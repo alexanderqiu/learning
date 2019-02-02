@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 # git
 
 [TOC]
+=======
+# git 
+>>>>>>> parent of f1af0e9... toc
 
 ## github ssh
 
