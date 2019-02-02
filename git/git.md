@@ -52,8 +52,9 @@ git log 查看提交日志
 ```
 
 ## git reset
+将当前的分支重设到指定的<commit>或者HEAD(默认是HEAD，即最新的一次提交)
 ```text
-git reset [--hard|soft|mixed|merge|keep] [<commit>或HEAD] 将当前的分支重设(reset)到指定的<commit>或者HEAD(默认，如果不显示指定<commit>，默认是HEAD，即最新的一次提交)
+git reset [--hard|soft|mixed|merge|keep] [<commit>或HEAD] 
 --hard 重设(reset) 索引和工作目录, 永久删除
 git reset --hard HEAD~1 回退到当前最近一次的提交 HEAD后面的数字表示会退到的最后第几次
 
