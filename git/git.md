@@ -1,10 +1,17 @@
-<<<<<<< HEAD
 # git
+<!-- TOC -->
 
-[TOC]
-=======
-# git 
->>>>>>> parent of f1af0e9... toc
+- [git](#git)
+    - [github ssh](#github-ssh)
+    - [git配置](#git配置)
+    - [git初始化工程](#git初始化工程)
+    - [git基本操作](#git基本操作)
+    - [git reset](#git-reset)
+    - [git revert](#git-revert)
+    - [git rebase](#git-rebase)
+    - [git cherry-pick](#git-cherry-pick)
+
+<!-- /TOC -->
 
 ## github ssh
 
