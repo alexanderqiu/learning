@@ -64,9 +64,22 @@ func main() {
 - 内置包不需要全路径,其他包需要写明全路径
 - 报名清晰简洁、全部小写(有利于开发频繁输入包名)
 
-**http包**如下图:
+**http包**如下:
 
-![image](https://github.com/qiujianglong/learning/blob/master/go/png/包.jpg)
+```text
+
+net/http/
+    cgi/
+    cookiejar/
+        testdata/
+    fcgi/
+    httptest/
+    httputil/
+    pprof/
+    testdata/
+
+```
+
 
 #### main包
 - 命名为main的包有特殊含义
