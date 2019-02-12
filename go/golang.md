@@ -1,3 +1,5 @@
+# go语言学习总结
+
 <!-- TOC -->
 
 - [go语言学习总结](#go语言学习总结)
@@ -32,10 +34,17 @@
         - [迭代切片](#迭代切片)
         - [多维切片](#多维切片)
         - [切片传递](#切片传递)
+    - [映射](#映射)
+        - [创建和初始化](#创建和初始化)
+        - [传递映射](#传递映射)
+    - [类型](#类型)
+        - [用户定义类型](#用户定义类型)
+        - [基于int64声明一个新类型](#基于int64声明一个新类型)
+        - [方法](#方法)
+        - [go语言类型](#go语言类型)
+        - [公开或未公开标识符](#公开或未公开标识符)
 
 <!-- /TOC -->
-
-# go语言学习总结
 
 ## go语言介绍
 ### 优势
@@ -602,4 +611,187 @@ func foo(slice []int) []int {
   return slice
 }
 ```
+
+## 映射
+> 映射是一种数据结构，用于存储一系列无序的键值对
+> 
+> 映射是一个集合，可以使用类似处理数组和切片的方式迭代映射中的元素
+>
+> 所有操作都要先选择一个桶。把操作映射时指定的键传给映射的散列函数,就能选中对应的桶
+
+### 创建和初始化
+- 使用make声明映射
+```gotemplate
+// 创建一个映射，键的类型是string，值的类型是int
+dict := make(map[string]int)
+  
+// 创建一个映射，键和值的类型都是string
+// 使用两个键值对初始化映射
+dict := map[string]string{"Red": "#da1337", "Orange": "#e95a22"}
+```
+
+- 声明一个存储字符串切片的映射
+```gotemplate
+// 创建一个映射，使用字符串切片作为值
+dict := map[int][]string{}
+```
+
+- 为映射赋值
+```gotemplate
+// 创建一个空映射，用来存储颜色以及颜色对应的十六进制代码
+colors := map[string]string{}
+    
+// 将 Red 的代码加入到映射 
+colors["Red"] = "#da1337"
+```
+
+- 使用range迭代映射
+```gotemplate
+// 创建一个映射，存储颜色以及颜色对应的十六进制代码 
+colors := map[string]string {
+    "AliceBlue":   "#f0f8ff",
+    "Coral":       "#ff7F50",
+    "DarkGray":    "#a9a9a9",
+    "ForestGreen": "#228b22",
+}
+    
+// 显示映射里的所有颜色
+for key, value := range colors {
+  fmt.Printf("Key: %s Value: %s\n", key, value) 
+}
+```
+
+- 从映射中删除一项
+```gotemplate
+// 删除键为 Coral 的键值对 
+delete(colors, "Coral")
+    
+// 显示映射里的所有颜色
+for key, value := range colors {
+    fmt.Printf("Key: %s Value: %s\n", key, value) 
+}
+```
+
+### 传递映射
+> 函数间传递映射,对映射修改后,所有对映射的引用都会被修改
+
+## 类型
+
+### 用户定义类型
+- 自定义类型
+```gotemplate
+type user struct {
+    name          string
+    email         string
+    ext           int
+    privileged    boolean
+}
+```
+
+- 声明初始化
+```gotemplate
+// 声明一个为user类型的变量,并且初始化零值
+var bill user
+```
+
+- 结构字面量来声明一个结构类型的变量
+```gotemplate
+//声明user类型的变量，并初始化所有字段 
+lisa := user {
+  name: "Lisa",
+  email: "lisa@email.com",
+  ext: 123, 
+  privileged: true, 
+}
+```
+
+- 不使用字段名，创建结构类型的值
+```gotemplate
+//声明user类型的变量
+lisa := user{"Lisa", "lisa@email.com", 123, true}
+```
+
+- 嵌套结构
+```gotemplate
+// admin需要一个user类型作为管理者，并附加权限
+type admin struct {
+    person user
+    level string
+}
+  
+//声明admin类型的变量 
+fred := admin{
+  person: user{
+    name: "Lisa",
+    email:  "lisa@email.com",
+    ext:  123,
+    privileged: true,
+  },
+  level: "super",
+}
+```
+
+### 基于int64声明一个新类型
+**type Duration int64**
+
+Duration 是一种描述时间 间隔的类型，单位是纳秒(ns)
+
+### 方法
+关键字**func**和方法名之间增加了一个参数
+```gotemplate
+func (u user) notify() {
+  ...
+}
+```
+
+- 使用变量调用
+```gotemplate
+var bill user
+bill.notify()
+```
+
+- 使用指针调用
+```gotemplate
+lisa := &user{"Lisa", "lisa@email.com"}
+lisa.notify()
+
+    
+(*lisa).notify()
+```
+
+### go语言类型
+- 内置类型
+  1. 数值类型
+  2. 字符串类型
+  3. 布尔类型
+  
+- 引用类型
+  1. 切片
+  2. 映射
+  3. 通道
+  4. 接口
+  5. 函数
+  
+- 结构类型
+  
+  可以用来描述一组数据值,自定义
+  
+- 接口
+  
+  接口用来定义行为的类型, 这些被定义的行为不由接口直接实现
+  
+- 实现
+  
+  如果用户定义的类型实现了某个接口类型声明的一组方法，那么这个用户定义的类型的值就可以赋给这个接口类型的值。
+  这个赋值会把用户定义的类型的值存入接口类型的值。
+  对接口值方法的调用会执行接口值里存储的用户定义的类型的值对应的方法
+  
+- 多态
+  
+  通过定义入参的不同结构类型,实现多态
+  
+### 公开或未公开标识符
+> 需要使用某种规则来控制声明后的标识符的可见性,通过判断首字母大小写
+- 公开标识符 首字母大写
+- 非公开标识符 首字母小写
 
