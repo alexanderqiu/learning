@@ -115,7 +115,7 @@ import (
 
 - **重命名导入** 两个相同名称的包名
 
-```text
+```gotemplate
 
 package main
 
@@ -146,7 +146,7 @@ import (
 ####示例
 **将数据库驱动注册到sql包中**
 
-```text
+```gotemplate
 
 package pg
 
@@ -181,4 +181,147 @@ godoc -http=:8080 - 浏览器通过localhost:8080查看文档
 - vender
 - gb(与go get不兼容)
 
+## 数组切片与类型
 
+### 数组
+
+#### 概念
+> 数组是切片与映射的基础
+>
+> 数组是一个长度固定的数据类型,用于存储相同类型的元素连续块(**连续分配** **元素相同** **固定快速索引到元素**)
+
+#### 数组声明和初始化
+
+  - 声明一个数组，并设置为零值
+  ```gotemplate
+  var array [5] int<br/>
+  ```
+  
+  - 使用数组字面量声明数组
+
+  ```gotemplate
+  array =: [5]int{10,20,30,40,50}
+  ```
+
+  - ...替代数组长度,容量由初始值决定
+  ```gotemplate
+  array =: [...]int{10,20,30,40,50}
+  ```
+  
+  - 声明数组并指定特定元素的值
+  ```gotemplate
+  // 声明一个有 5 个元素的数组
+  // 用具体值初始化索引为 1 和 2 的元素 // 其余元素保持零值  
+  array := [5]int{1: 10, 2: 20}
+  ```
+  
+  - 修改指定元素的值
+  ```gotemplate
+  array[2] = 35
+  ```  
+
+  - 访问指针数组的元素
+  ```gotemplate
+  // 声明包含 5 个元素的指向整数的数组
+  // 用整型指针初始化索引为 0 和 1 的数组元素
+  array := [5]*int{0: new(int), 1: new(int)}
+    
+  // 为索引为0和1的元素赋值 
+  *array[0] = 10 
+  *array[1] = 20
+  ```
+
+  - 数组赋值给另外一个数组
+  ```gotemplate
+  // 声明第一个包含 5 个元素的字符串数组 var array1 [5]string
+  // 声明第二个包含 5 个元素的字符串数组
+  // 用颜色初始化数组
+  array2 := [5]string{"Red", "Blue", "Green", "Yellow", "Pink"}
+    
+  // 把 array2 的值复制到 array1 (元素类型与长度都一致才能赋值)
+  array1 = array2
+  ```
+  
+  - 把一个指针数组赋值给另一个
+  ```gotemplate
+  //把一个指针数组赋值给另一个
+  // 声明第一个包含 3 个元素的指向字符串的指针数组  
+  var array1 [3]*string
+    
+  // 声明第二个包含 3 个元素的指向字符串的指针数组
+  // 使用字符串指针初始化这个数组
+  array2 := [3]*string{new(string), new(string), new(string)}
+    
+  // 使用颜色为每个元素赋值 *array2[0] = "Red" *array2[1] = "Blue" *array2[2] = "Green"
+  // 将 array2 复制给 array1 
+  array1 = array2
+  ```
+
+### 多维数组
+#### 二维数组
+
+- 二维数组的声明与初始化
+```text
+// 声明一个二维整型数组，两个维度分别存储4个元素和2个元素
+var array1 [4][2]int
+    
+// 使用数组字面量来声明并初始化一个二维整型数组
+array2 := [4][2]int{{10, 11}, {20, 21}, {30, 31}, {40, 41}}
+    
+// 声明并初始化外层数组中索引为1和3的元素 
+array3 := [4][2]int{1: {20, 21}, 3: {40, 41}}
+    
+// 声明并初始化外层数组和内层数组的单个元素 
+array4 := [4][2]int{1: {0: 20}, 3: {1: 41}}
+```
+**多维数组如下图**
+![image](https://github.com/qiujianglong/learning/blob/master/go/png/多维数组.jpg)
+
+- 二维数组的赋值
+```gotemplate
+// 声明两个不同的二维整型数组 
+var array1 [2][2]int  
+var array2 [2][2]int
+  
+// 为每个元素赋值 
+array2[0][0] = 10 
+array2[0][1] = 20 
+array2[1][0] = 30 
+array2[1][1] = 40
+  
+// 将 array2 的值复制给 
+array1 array1 = array2
+```
+
+- 使用索引为变量赋值
+```gotemplate
+// 将 array1 的索引为 1 的维度复制到一个同类型的新数组里 
+var array3 [2]int = array1[1]
+    
+// 将外层数组的索引为 1、内层数组的索引为 0 的整型值复制到新的整型变量里 
+var value int = array1[1][0]
+```
+### 数组传递
+- 值传递(分配内存、赋值)
+```gotemplate
+//声明一个需要8 MB的数组
+var array [1e6]int
+    
+// 将数组传递给函数 foo foo(array)
+// 函数 foo 接受一个 100 万个整型值的数组 
+func foo(array [1e6]int) {
+}
+```
+
+- 指针传递(改变指针指向)
+```gotemplate
+//分配一个需要8 MB的数组
+var array [1e6]int
+    
+// 将数组的地址传递给函数 
+foo foo(&array)
+    
+// 函数 foo 接受一个指向 100 万个整型值的数组的指针 
+func foo(array *[1e6]int) {
+}
+```
