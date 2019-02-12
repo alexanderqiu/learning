@@ -356,3 +356,244 @@ foo foo(&array)
 func foo(array *[1e6]int) {
 }
 ```
+
+### 切片
+> 切片是一种**数据结构**,便于使用和管理数据集合
+>
+> 切片对底层数组进行了抽象
+>
+> 动态数据,按需自增或者缩小
+
+**底层结构**
+![image](https://github.com/qiujianglong/learning/blob/master/go/png/slice.jpg)
+
+#### 切片的创建与初始化
+
+- 使用长度声明一个字符串切片
+```gotemplate
+// 创建一个字符串切片
+// 其长度和容量都是5个元素 
+slice := make([]string, 5)
+```
+
+- 使用长度和容量声明整型切片
+```gotemplate
+// 创建一个整型切片
+// 其长度为3个元素，容量为5个元素 
+slice := make([]int, 3, 5)
+```
+
+- 使用索引声明切片
+```gotemplate
+// 创建字符串切片
+// 使用空字符串初始化第100个元素 
+slice := []string{99: ""}
+```
+
+- 声明数组和声明切片的不同
+```gotemplate
+// 创建有3个元素的整型数组
+array := [3]int{10, 20, 30}
+    
+// 创建长度和容量都是3的整型切片 
+slice := []int{10, 20, 30}
+```
+
+- 创建 nil 切片
+```gotemplate
+var slice []int
+```
+
+- 声明空切片
+```gotemplate
+// 使用 make 创建空的整型切片
+slice := make([]int, 0)
+    
+// 使用切片字面量创建空的整型切片 
+slice := []int{}
+```
+
+- 使用切片字面量来声明切片
+```gotemplate
+// 创建一个整型切片
+// 其容量和长度都是5个元素
+slice := []int{10, 20, 30, 40, 50}
+    
+// 改变索引为1的元素的值 
+slice[1] = 25
+```
+
+- 使用切片创建切片
+```gotemplate
+// 创建一个整型切片
+// 其长度和容量都是5个元素
+slice := []int{10, 20, 30, 40, 50}
+    
+// 创建一个新切片
+// 其长度为2个元素，容量为4个元素 
+newSlice := slice[1:3]
+    
+//计算新的长度和容量,源切片长度为5
+长度: 3 - 1 = 2 
+容量: 5 - 1 = 4
+    
+//修改新切片内容,原始切片也会被更改
+// 修改 newSlice 索引为1的元素
+// 同时也修改了原来的slice的索引为2的元素 
+newSlice[1] = 35
+```
+- 切片索引越界
+```gotemplate
+// 创建一个整型切片
+// 其长度和容量都是5个元素
+slice := []int{10, 20, 30, 40, 50}
+    
+// 创建一个新切片
+// 其长度为2个元素，容量为4个元素 
+newSlice := slice[1:3]
+    
+// 修改newSlice索引为3的元素
+// 这个元素对于newSlice来说并不存在 
+newSlice[3] = 45
+    
+Runtime Exception:
+panic: runtime error: index out of range
+```
+
+### 切片增长
+- 使用append向切片增加元素
+```gotemplate
+// 创建一个整型切片
+// 其长度和容量都是5个元素
+slice := []int{10, 20, 30, 40, 50}
+    
+// 创建一个新切片
+// 其长度为2个元素，容量为4个元素 
+newSlice := slice[1:3]
+    
+// 使用原有的容量来分配一个新元素
+// 将新元素赋值为60
+newSlice = append(newSlice, 60)
+```
+
+- 使用append同时增加切片的长度和容量
+```gotemplate
+// 创建一个整型切片
+// 其长度和容量都是 4 个元素
+slice := []int{10, 20, 30, 40}
+ 
+// 向切片追加一个新元素
+// 将新元素赋值为 50
+newSlice := append(slice, 50)
+```
+
+- 使用切片字面量声明一个字符串切片
+```gotemplate
+// 创建字符串切片
+// 其长度和容量都是 5 个元素
+source := []string{"Apple", "Orange", "Plum", "Banana", "Grape"}
+```
+
+- 使用索引创建切片
+```gotemplate
+// 将第三个元素切片,并限制容量
+// 其长度为1个元素，容量为2个元素 slice := source[2:3:4]
+  
+对于 slice[i:j:k] 或 [2:3:4]
+长度: j – i 或 3 - 2 = 1 
+容量: k – i 或 4 - 2 = 2
+```
+
+- 将一个切片追加到另一个切片
+```gotemplate
+// 创建两个切片，并分别用两个整数进行初始化 s1 := []int{1, 2}
+s2 := []int{3, 4}
+    
+// 将两个切片追加在一起，并显示结果 
+fmt.Printf("%v\n", append(s1, s2...))
+  
+Output:[1 2 3 4]
+```
+
+### 迭代切片
+- 使用for range迭代切片
+```gotemplate
+// 创建一个整型切片
+// 其长度和容量都是 4 个元素
+slice := []int{10, 20, 30, 40}
+ 
+// 迭代每一个元素，并显示其值
+for index, value := range slice {
+} fmt.Printf("Index: %d Value: %d\n", index, value)
+    
+Output:
+Index: 0 Value: 10 Index: 1 Value: 20 Index: 2 Value: 30 Index: 3 Value: 40
+```
+
+- 使用空白标识符(下划线)来忽略索引值
+```gotemplate
+// 创建一个整型切片
+// 其长度和容量都是 4 个元素
+slice := []int{10, 20, 30, 40}
+    
+// 迭代每个元素，并显示其值
+for _, value := range slice {
+  fmt.Printf("Value: %d\n", value) 
+}
+  
+Output:
+Value: 10
+Value: 20
+Value: 30
+Value: 40
+```
+
+- 使用传统的for循环对切片进行迭代
+```gotemplate
+// 创建一个整型切片
+// 其长度和容量都是 4 个元素
+slice := []int{10, 20, 30, 40}
+  
+// 从第三个元素开始迭代每个元素
+for index := 2; index < len(slice); index++ {
+  fmt.Printf("Index: %d Value: %d\n", index, slice[index]) 
+}
+  
+Output:
+Index: 2 Value: 30 Index: 3 Value: 40
+```
+
+### 多维切片
+- 创建一个整型切片的切片
+```text
+slice := [][]int{{10}, {100, 200}}
+```
+**如图**
+![image](https://github.com/qiujianglong/learning/blob/master/go/png/multislice.jpg)
+
+- 多维切片增加值
+```text
+// 创建一个整型切片的切片
+slice := [][]int{{10}, {100, 200}}
+  
+// 为第一个切片追加值为20的元素 
+slice[0] = append(slice[0], 20)
+```
+
+### 在函数间传递切片
+> 函数间以值的方式传递切片,切片值很小,复制成本低
+
+```gotemplate
+// 分配包含100万个整型值的切片
+slice := make([]int, 1e6)
+  
+// 将slice传递到函数 
+foo slice = foo(slice)
+  
+// 函数 foo 接收一个整型切片，并返回这个切片 
+func foo(slice []int) []int {
+  ...
+  return slice
+}
+```
+
