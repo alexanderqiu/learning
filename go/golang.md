@@ -43,6 +43,7 @@
         - [方法](#方法)
         - [go语言类型](#go语言类型)
         - [公开或未公开标识符](#公开或未公开标识符)
+    - [并发](#并发)
 
 <!-- /TOC -->
 
@@ -795,3 +796,22 @@ lisa.notify()
 - 公开标识符 首字母大写
 - 非公开标识符 首字母小写
 
+## 并发
+> 操作系统会在物理处理器上调度线程来运行
+> 而Go语言的运行时会在逻辑处理器上调度goroutine来运行
+> 每个逻辑处理器都分别绑定到单个操作系统线程
+
+如果创建一个goroutine并准备运行,这个goroutine就会被放到调度器的全局运行队列中。之后,
+调度器就将这些队列中的goroutine分配给一个逻辑处理器，并放到这个逻辑处理器对应的本地运行队列中
+本地运行队列中的goroutine会一直等待直到自己被分配的逻辑处理器执行
+
+**如图**
+![image](https://github.com/qiujianglong/learning/blob/master/go/png/goroutine.jpg)
+
+- WaitGroup
+  WaitGroup 是一个计数信号量，可以用来记录并维护运行的 goroutine。如果 WaitGroup 的值大于 0，Wait 方法就会阻塞。
+  
+- 关键字defer
+  关键字defer会修改函数调用时机,在正在执行的函数返回时才真正调用defer声明的函数。关键字defer保证每个goroutine一旦完成其工作就调用Done方法
+  
+关于并发机制后续补充...
