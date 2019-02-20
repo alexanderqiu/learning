@@ -1,7 +1,7 @@
-# git
+# git小技巧
 <!-- TOC -->
 
-- [git](#git)
+- [git小技巧](#git小技巧)
     - [github ssh](#github-ssh)
     - [git配置](#git配置)
     - [git初始化工程](#git初始化工程)

@@ -1,5 +1,5 @@
 # learning
 
-- [git学习总结](/git/git.md)
-- [go语言学习总结](/go/golang.md)
-- [聊聊http websocket](/httpwebsocket/httpwebsocket.md)
+- [git小技巧](/git/git.md)
+- [一小时读懂go语言](/go/golang.md)
+- [聊聊socket http websocket](/httpwebsocket/httpwebsocket.md)
