@@ -40,7 +40,7 @@
 
 网络通过ip路由与tcp协议保证数据的传输
 
-![image](https://github.com/qiujianglong/learning/blob/master/httpwebsocket/png/tcpip.png)
+![image](https://github.com/qiujianglong/learning/blob/master/net/png/tcpip.png)
 
 
 ## socket
@@ -55,7 +55,7 @@
 **socket 客户端** 创建Socket, 连接服务器, 发送数据, 读取响应数据, 直到数据交换完毕, 关闭连接, 结束会话
 
 socket 时序图如下:
-![image](https://github.com/qiujianglong/learning/blob/master/httpwebsocket/png/socket.png)
+![image](https://github.com/qiujianglong/learning/blob/master/net/png/socket.png)
 
 **socket server**
 ```java
@@ -200,7 +200,7 @@ HTTP 是基于 TCP/IP 协议的应用层协议。
 它不涉及数据包传输, 主要规定了客户端和服务器之间的通信格式, 默认使用80端口。
 
 ### HTTP请求
-![image](https://github.com/qiujianglong/learning/blob/master/httpwebsocket/png/httprequest.png)
+![image](https://github.com/qiujianglong/learning/blob/master/net/png/httprequest.png)
 
 http请求主要由**请求状态行**、**首部字段**、**请求主体**
 
@@ -215,7 +215,7 @@ GET /example.html HTTP/1.1 (CRLF)
     
     
 ### HTTP响应
-![image](https://github.com/qiujianglong/learning/blob/master/httpwebsocket/png/httpresponse.png)
+![image](https://github.com/qiujianglong/learning/blob/master/net/png/httpresponse.png)
 
 - **HTTP响应状态行**
   - **HTTP协议的版本**
