@@ -1,3 +1,28 @@
+<!-- TOC -->
+
+- [聊聊http websocket](#聊聊http-websocket)
+    - [简介](#简介)
+    - [tcp/ip](#tcpip)
+    - [socket](#socket)
+    - [http和https](#http和https)
+        - [HTTP请求](#http请求)
+        - [HTTP响应](#http响应)
+            - [状态码](#状态码)
+            - [常见状态码](#常见状态码)
+            - [HTTP缺点](#http缺点)
+        - [HTTPS](#https)
+    - [全双工](#全双工)
+    - [websocket](#websocket)
+        - [为什么需要websocket？](#为什么需要websocket)
+        - [websocket特点](#websocket特点)
+        - [websocket请求头](#websocket请求头)
+        - [websocket响应头](#websocket响应头)
+        - [java html5 websocket](#java-html5-websocket)
+        - [注解](#注解)
+        - [websocket可能遇到的坑](#websocket可能遇到的坑)
+
+<!-- /TOC -->
+
 # 聊聊http websocket
 
 ## 简介
