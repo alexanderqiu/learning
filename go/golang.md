@@ -322,7 +322,7 @@ array3 := [4][2]int{1: {20, 21}, 3: {40, 41}}
 array4 := [4][2]int{1: {0: 20}, 3: {1: 41}}
 ```
 **多维数组如下图**
-![image](https://github.com/qiujianglong/learning/blob/master/go/png/多维数组.jpg)
+![image](https://github.com/alexanderqiu/learning/blob/master/go/png/多维数组.jpg)
 
 - 二维数组的赋值
 ```gotemplate
@@ -381,7 +381,7 @@ func foo(array *[1e6]int) {
 > 动态数据,按需自增或者缩小
 
 **底层结构**
-![image](https://github.com/qiujianglong/learning/blob/master/go/png/slice.jpg)
+![image](https://github.com/alexanderqiu/learning/blob/master/go/png/slice.jpg)
 
 #### 切片的创建与初始化
 
@@ -585,7 +585,7 @@ Index: 2 Value: 30 Index: 3 Value: 40
 slice := [][]int{{10}, {100, 200}}
 ```
 **如图**
-![image](https://github.com/qiujianglong/learning/blob/master/go/png/multislice.jpg)
+![image](https://github.com/alexanderqiu/learning/blob/master/go/png/multislice.jpg)
 
 - 多维切片增加值
 ```text
