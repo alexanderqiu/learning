@@ -1,3 +1,5 @@
+# 聊聊http websocket
+
 <!-- TOC -->
 
 - [聊聊http websocket](#聊聊http-websocket)
@@ -22,8 +24,6 @@
         - [websocket可能遇到的坑](#websocket可能遇到的坑)
 
 <!-- /TOC -->
-
-# 聊聊http websocket
 
 ## 简介
 
