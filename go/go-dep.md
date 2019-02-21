@@ -1,5 +1,25 @@
 # go包管理工具之dep
 
+<!-- TOC -->
+
+- [go包管理工具之dep](#go包管理工具之dep)
+    - [GOROOT](#goroot)
+    - [GOPATH](#gopath)
+    - [内部依赖](#内部依赖)
+    - [外部依赖](#外部依赖)
+    - [为什么需要包管理工具](#为什么需要包管理工具)
+    - [dep](#dep)
+        - [安装或升级](#安装或升级)
+        - [dep使用](#dep使用)
+            - [Gopkg.lock](#gopkglock)
+            - [Gopkg.toml](#gopkgtoml)
+        - [dep指令介绍](#dep指令介绍)
+        - [dep图形化](#dep图形化)
+            - [安装graphviz](#安装graphviz)
+            - [使用图形化](#使用图形化)
+
+<!-- /TOC -->
+
 go包管理工具, 对于新人来说不是太友好, 不像maven那样, 只需要maven clean install容易理解与便捷使用
 一开始GOROOT与GOPATH就会让新人很不理解, 因此包管理工具需要从理解GOROOT和GOPATH开始 
 
