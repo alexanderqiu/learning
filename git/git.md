@@ -46,7 +46,7 @@ touch README.md
 git init
 git add README.md
 git commit -m "first commit"
-git remote add origin https://github.com/xxx/xxx.git
+git remote add origin git@github.com:[github用户名]/[repo名称].git
 git push -u origin master
 ```
 
