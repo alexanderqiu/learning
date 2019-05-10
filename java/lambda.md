@@ -447,24 +447,34 @@ print x + 2
 
 ##### 无状态(Stateless)
 
-    * unordered()
-    * filter()
-    *  map()
-    *  mapToInt()
-    *  mapToLong()
-    *  mapToDouble()
-    *  flatMap()
-    *  flatMapToInt()
-    *  flatMapToLong()
-    *  flatMapToDouble()
-    *  peek()
+```text
+
+unordered()
+filter()
+map()
+mapToInt()
+mapToLong() 
+mapToDouble()
+flatMap()
+flatMapToInt()
+flatMapToLong()
+flatMapToDouble()
+peek()
+
+```
+
 
 ##### 有状态(Stateful)
 
-    * distinct()
-    * sorted()
-    * limit()
-    * skip()
+```text
+
+distinct()
+sorted()
+limit()
+skip()
+
+```
+
 
 ### 3.4. 终结操作
 
@@ -476,22 +486,30 @@ print x + 2
 
 ##### 非短路操作
 
-    * forEach()
-    * forEachOrdered()
-    * toArray()
-    * reduce()
-    * collect()
-    * max()
-    * min()
-    * count()
+```text
+
+forEach()
+forEachOrdered()
+toArray()
+reduce()
+collect()
+max()
+min()
+count()
+
+```
 
 ##### 短路操作(short-circuiting)
 
-    * anyMatch()
-    * allMatch()
-    * noneMatch()
-    * findFirst()
-    * findAny()
+```text
+
+anyMatch()
+allMatch()
+noneMatch()
+findFirst()
+findAny()
+
+```
 
 ## 3.5. 操作详解
 
