@@ -7,3 +7,4 @@
 - [大数据平台hadoop体系介绍](/bigdata/大数据平台hadoop体系介绍.doc)
 - [docker容器与容器云](/docker/docker容器与容器云.md)
 - [五分钟学会webpack打包](/webpack/webpack打包从无到有.md)
+- [函数式编程-java8 lambda实践](/java/lambda.md)
